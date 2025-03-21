@@ -1,5 +1,55 @@
 # astro
 
+## 5.5.4
+
+### Patch Changes
+
+- [#13457](https://github.com/withastro/astro/pull/13457) [`968e713`](https://github.com/withastro/astro/commit/968e713c268e1b2176c9265b6c438c56105c2730) Thanks [@ascorbic](https://github.com/ascorbic)! - Sets correct response status text for custom error pages
+
+- [#13447](https://github.com/withastro/astro/pull/13447) [`d80ba2b`](https://github.com/withastro/astro/commit/d80ba2b27d33d2972ffa3242330fb00d0fc58ba9) Thanks [@ematipico](https://github.com/ematipico)! - Fixes an issue where `site` was added to the generated redirects.
+
+- [#13481](https://github.com/withastro/astro/pull/13481) [`e9e9245`](https://github.com/withastro/astro/commit/e9e9245c7c0ad6e3bda2b7600ff2bd845921a19d) Thanks [@martrapp](https://github.com/martrapp)! - Makes server island work with the client router again.
+
+- [#13484](https://github.com/withastro/astro/pull/13484) [`8b5e4dc`](https://github.com/withastro/astro/commit/8b5e4dc733bccce7d77defdbb973204aa9b8126b) Thanks [@ascorbic](https://github.com/ascorbic)! - Display useful errors when config loading fails because of Node addons being disabled on Stackblitz
+
+## 5.5.3
+
+### Patch Changes
+
+- [#13437](https://github.com/withastro/astro/pull/13437) [`013fa87`](https://github.com/withastro/astro/commit/013fa87982ea92675e899d2f71a200e5298db608) Thanks [@Vardhaman619](https://github.com/Vardhaman619)! - Handle server.allowedHosts when the value is true without attempting to push it into an array.
+
+- [#13324](https://github.com/withastro/astro/pull/13324) [`ea74336`](https://github.com/withastro/astro/commit/ea7433666e0cc7e1301e638e80f90323f20db3e1) Thanks [@ematipico](https://github.com/ematipico)! - Upgrade to shiki v3
+
+- [#13372](https://github.com/withastro/astro/pull/13372) [`7783dbf`](https://github.com/withastro/astro/commit/7783dbf8117650c60d7633b43f0d42da487aa2b1) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes a bug that caused some very large data stores to save incomplete data.
+
+- [#13358](https://github.com/withastro/astro/pull/13358) [`8c21663`](https://github.com/withastro/astro/commit/8c21663c4a6363765f2caa5705a93a41492a95c9) Thanks [@ematipico](https://github.com/ematipico)! - Adds a new function called `insertPageRoute` to the Astro Container API.
+
+  The new function is useful when testing routes that, for some business logic, use `Astro.rewrite`.
+
+  For example, if you have a route `/blog/post` and for some business decision there's a rewrite to `/generic-error`, the container API implementation will look like this:
+
+  ```js
+  import Post from '../src/pages/Post.astro';
+  import GenericError from '../src/pages/GenericError.astro';
+  import { experimental_AstroContainer as AstroContainer } from 'astro/container';
+
+  const container = await AstroContainer.create();
+  container.insertPageRoute('/generic-error', GenericError);
+  const result = await container.renderToString(Post);
+  console.log(result); // this should print the response from GenericError.astro
+  ```
+
+  This new method only works for page routes, which means that endpoints aren't supported.
+
+- [#13426](https://github.com/withastro/astro/pull/13426) [`565583b`](https://github.com/withastro/astro/commit/565583bd6c99163ce5d9475b26075149cc8c155b) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes a bug that caused the `astro add` command to ignore the `--yes` flag for third-party integrations
+
+- [#13428](https://github.com/withastro/astro/pull/13428) [`9cac9f3`](https://github.com/withastro/astro/commit/9cac9f314277def0ee584e45d4937bac0235738a) Thanks [@matthewp](https://github.com/matthewp)! - Prevent bad value in x-forwarded-host from crashing request
+
+- [#13432](https://github.com/withastro/astro/pull/13432) [`defad33`](https://github.com/withastro/astro/commit/defad33140dccde324b9357bc6331f7e5cdec266) Thanks [@P4tt4te](https://github.com/P4tt4te)! - Fix an issue in the Container API, where the `renderToString` function doesn't render adequately nested slots when they are components.
+
+- Updated dependencies [[`ea74336`](https://github.com/withastro/astro/commit/ea7433666e0cc7e1301e638e80f90323f20db3e1)]:
+  - @astrojs/markdown-remark@6.3.1
+
 ## 5.5.2
 
 ### Patch Changes
